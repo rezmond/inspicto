@@ -4,7 +4,12 @@
   "description": "Pictures based source of inspiration",
   "main": "index.js",
   "dependencies": {
-    "@nestjs/cli": "10.1.18"
+    "@nestjs/cli": "10.1.18",
+    "@nestjs/sequelize": "10.0.0",
+    "pg": "8.11.3",
+    "pg-hstore": "2.3.4",
+    "sequelize": "6.33.0",
+    "sequelize-typescript": "2.1.5"
   },
   "scripts": {
     "test": "test"
@@ -13,5 +18,8 @@
     "picture"
   ],
   "author": "Danil Makarov",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/sequelize": "4.28.16"
+  }
 }

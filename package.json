@@ -1,0 +1,17 @@
+{
+  "name": "inspicto",
+  "version": "0.0.1",
+  "description": "Pictures based source of inspiration",
+  "main": "index.js",
+  "dependencies": {
+    "@nestjs/cli": "10.1.18"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "picture"
+  ],
+  "author": "Danil Makarov",
+  "license": "MIT"
+}

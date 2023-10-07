@@ -17,6 +17,6 @@ model User {
   email     String  @unique
   firstName String? @map("user_name")
   lastName  String? @map("last_name")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 }

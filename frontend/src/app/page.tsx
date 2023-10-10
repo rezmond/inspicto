@@ -3,15 +3,12 @@ import { FormEventHandler, useCallback } from 'react';
 
 import styles from './page.module.css';
 
+import { axios } from '@/libs/axios';
+
 const Home = () => {
   const handleSubmit = useCallback<FormEventHandler<HTMLFormElement>>((e) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const payload = Object.fromEntries(formData.entries());
-    fetch('auth', {
-      method: 'post',
-      body: JSON.stringify(payload),
-    });
+    axios.post('auth', e.currentTarget);
   }, []);
 
   return (

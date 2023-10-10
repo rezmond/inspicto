@@ -1,11 +1,8 @@
-import { axios } from '@/libs/axios';
-
-// const URL = `${process.env.API_HOST}/users`;
-const URL = `http://localhost:3000/users`;
+import { axiosServer } from '@/libs/axios';
 
 export const POST = async (req: Request) => {
   try {
-    const res = await axios.post(URL, await req.json());
+    const res = await axiosServer.post('/users', await req.json());
     return Response.json(res.data);
   } catch (error) {
     return new Response(

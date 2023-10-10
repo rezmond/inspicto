@@ -3,7 +3,7 @@ import { FormEventHandler, useCallback } from 'react';
 
 import styles from './page.module.css';
 
-import { axios } from '@/libs/axios';
+import { axiosClient } from '@/libs/axios';
 
 const Home = () => {
   const handleSubmit = useCallback<FormEventHandler<HTMLFormElement>>((e) => {
@@ -13,7 +13,7 @@ const Home = () => {
       password: formData.get('password'),
       email: formData.get('email'),
     };
-    axios.post('/auth', data);
+    axiosClient.post('/auth', data);
   }, []);
 
   return (

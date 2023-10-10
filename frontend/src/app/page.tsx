@@ -8,7 +8,12 @@ import { axios } from '@/libs/axios';
 const Home = () => {
   const handleSubmit = useCallback<FormEventHandler<HTMLFormElement>>((e) => {
     e.preventDefault();
-    axios.post('auth', e.currentTarget);
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      password: formData.get('password'),
+      email: formData.get('email'),
+    };
+    axios.post('/auth', data);
   }, []);
 
   return (

@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  postgres:
+  db:
     image: postgres:13
     container_name: inspicto-postgres
     ports:
@@ -9,3 +9,39 @@ services:
       POSTGRES_DB: "${DB_NAME}"
       POSTGRES_USER: "${DB_USER}"
       POSTGRES_PASSWORD: "${DB_PASSWORD}"
+    networks:
+      - my-network
+  backend:
+    depends_on:
+      - db
+    user: "${UID}:${GID}"
+    image: node:20-alpine
+    container_name: inspicto-nest
+    ports:
+      - 8000:3000
+    environment:
+      DATABASE_URL: "postgresql://${DB_USER}:${DB_PASSWORD}@db:${DB_PORT}/${DB_NAME}?schema=public"
+    networks:
+      - my-network
+    working_dir: /usr/src/app/
+    volumes:
+      - ./:/usr/src/app
+    command: "/bin/sh -c 'npm run migrate -w backend && npm run start:dev -w backend'"
+  frontend:
+    depends_on:
+      - backend
+    image: node:20-alpine
+    container_name: inspicto-next
+    ports:
+      - 3000:3001
+    environment:
+      API_HOST: http://backend:3000
+    networks:
+      - my-network
+    working_dir: /usr/src/app
+    volumes:
+      - ./:/usr/src/app
+    command: npm run dev -w frontend -- -p 3001 
+
+networks:
+  my-network: {}

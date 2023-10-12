@@ -1,7 +1,7 @@
-{
+module.exports = {
   "extends": ["next/core-web-vitals", "../.eslintrc"],
   "parserOptions": {
-    "tsconfigRootDir": "./"
+    "tsconfigRootDir": __dirname
   },
   "root": false
 }

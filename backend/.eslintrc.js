@@ -1,7 +1,7 @@
-{
+module.exports = {
   "extends": "../.eslintrc",
   "parserOptions": {
-    "tsconfigRootDir": "./"
+    "tsconfigRootDir": __dirname
   },
   "root": false
 }

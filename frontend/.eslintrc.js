@@ -1,5 +1,5 @@
 module.exports = {
-  "extends": ["next/core-web-vitals", "../.eslintrc"],
+  "extends": ["next/core-web-vitals", "../.eslintrc", "plugin:storybook/recommended"],
   "parserOptions": {
     "tsconfigRootDir": __dirname
   },

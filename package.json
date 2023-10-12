@@ -4,7 +4,10 @@
   "description": "Pictures based source of inspiration",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ts:watch:backend": "npm run ts:watch -w backend",
+    "ts:watch:frontend": "npm run ts:watch -w frontend",
+    "ts:watch": "npm-run-all --parallel ts:watch:backend ts:watch:frontend"
   },
   "author": "Danil Makarov",
   "license": "ISC",
@@ -15,6 +18,7 @@
   "devDependencies": {
     "eslint-config-prettier": "9.0.0",
     "eslint-plugin-prettier": "5.0.0",
+    "npm-run-all": "^4.1.5",
     "prettier": "3.0.3"
   },
   "dependencies": {

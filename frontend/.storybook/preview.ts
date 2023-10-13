@@ -1,3 +1,4 @@
+import { withMuiContexts } from '../src/utils/storybook/decorators/withMuiContexts';
 import type { Preview } from '@storybook/react';
 
 const preview: Preview = {
@@ -10,6 +11,9 @@ const preview: Preview = {
       },
     },
   },
+  decorators: [
+    withMuiContexts
+  ]
 };
 
 export default preview;

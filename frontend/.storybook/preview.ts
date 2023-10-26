@@ -1,4 +1,4 @@
-import { withMuiContexts } from '../src/fsd/app/providers/storybook/withMuiContexts';
+import { withMuiContexts } from '../src/fsd/app/storybook/withMuiContexts';
 import type { Preview } from '@storybook/react';
 
 const preview: Preview = {

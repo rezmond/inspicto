@@ -1,4 +1,4 @@
-import { User } from './types';
+import type { User } from '../model';
 
 export const getUserName = ({ firstName, lastName, login, email }: User) => {
   if (firstName || lastName) {

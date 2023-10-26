@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
 import '@/app/globals.css';
-import { ClientProviders } from '@/features/providers';
+import { ClientProviders } from '@/app';
 
 const inter = Inter({ subsets: ['latin'] });
 

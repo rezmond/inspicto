@@ -1,12 +1,12 @@
 'use client';
 import { FC } from 'react';
 
+import { getUserName, type User } from '@/entities/user';
 import { AppBar } from '@/shared/ui/AppBar';
 import { Button } from '@/shared/ui/Button';
 import { Toolbar } from '@/shared/ui/ToolBar';
 import { Typography } from '@/shared/ui/Typography';
 
-import { User, getUserName } from '../../lib';
 import { useStyles } from './styles';
 
 type HeaderProps = {

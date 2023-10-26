@@ -1,4 +1,4 @@
-import { axiosServer } from '@/libs/axios';
+import { axiosServer } from '@/shared/lib/axios';
 
 export const POST = async (req: Request) => {
   try {

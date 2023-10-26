@@ -26,7 +26,7 @@ const config: StorybookConfig = {
   },
   webpackFinal: (config ) => {
     if (config.resolve?.alias) {
-      config.resolve.alias["@"] = resolve(__dirname, "..", "src");
+      config.resolve.alias["@"] = resolve(__dirname, "..", "src/fsd");
     }
     return config;
   }

@@ -1,11 +1,8 @@
+import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
-import { CssVarsProvider } from '@/libs/mui/CssVarsProvider';
-import { theme } from '@/libs/mui/theme';
-
-import type { Metadata } from 'next';
-
-import './globals.css';
+import '@/app/globals.css';
+import { ClientProviders } from '@/features/providers';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <CssVarsProvider theme={theme}>{children}</CssVarsProvider>
+        <ClientProviders>{children}</ClientProviders>
       </body>
     </html>
   );

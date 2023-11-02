@@ -7,7 +7,7 @@ import { Button } from '@/shared/ui/Button';
 import { Toolbar } from '@/shared/ui/ToolBar';
 import { Typography } from '@/shared/ui/Typography';
 
-import { useStyles } from './styles';
+import styles from './Header.module.css';
 
 type HeaderProps = {
   user?: User;
@@ -20,7 +20,7 @@ export const Header: FC<HeaderProps> = ({ user }) => {
   const { classes } = useStyles();
   return (
     <AppBar position="static">
-      <Toolbar className={classes.toolbar}>
+      <Toolbar className={styles.toolbar}>
         {user ? (
           <>
             <Typography>
@@ -33,7 +33,7 @@ export const Header: FC<HeaderProps> = ({ user }) => {
         ) : (
           <>
             <Button
-              className={classes.firstHeaderCta}
+              className={styles.firstHeaderCta}
               color="inherit"
               onClick={onLogin}
             >

@@ -4,6 +4,7 @@ import {
 } from '@mui/material/styles';
 import { type ComponentProps, FC } from 'react';
 
+import { GlobalStyles } from '@/shared/ui/GlobalStyles';
 import type { Theme } from './theme';
 
 type OriginalCssVarsProviderProps = ComponentProps<
@@ -20,6 +21,13 @@ export const CssVarsProvider: FC<CssVarsProviderProps> = ({
 }) => (
   <StyledEngineProvider injectFirst>
     <Experimental_CssVarsProvider theme={theme} {...props}>
+      <GlobalStyles
+        styles={{
+          ':root': {
+            '--spacing': theme.spacing(),
+          },
+        }}
+      />
       {children}
     </Experimental_CssVarsProvider>
   </StyledEngineProvider>

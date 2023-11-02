@@ -1,14 +1,10 @@
 'use client';
 import { Header } from '@/widgets/header';
 
-import { useStyles } from './styles';
+import styles from './styles.module.css';
 
-export const Home = () => {
-  const { classes } = useStyles();
-
-  return (
-    <main className={classes.root}>
-      <Header />
-    </main>
-  );
-};
+export const Home = () => (
+  <main className={styles.root}>
+    <Header />
+  </main>
+);

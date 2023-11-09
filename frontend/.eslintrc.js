@@ -8,5 +8,21 @@ module.exports = {
   "parserOptions": {
     "tsconfigRootDir": __dirname
   },
-  "root": false
+  "root": false,
+  "rules": {
+    "no-restricted-imports": ["error", {
+      patterns: [{
+        group: ["@mui/*"],
+        message: "Please use import from \"@/shared/ui/*\" instead"
+      }],
+    }]
+  },
+  "overrides": [
+    {
+      files: ['src/fsd/shared/ui/*'],
+      rules: {
+        "no-restricted-imports": "off"
+      }
+    }
+  ]
 }

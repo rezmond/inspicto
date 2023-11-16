@@ -8,14 +8,12 @@ import { Grid } from '@/shared/ui/Grid';
 import { Link } from '@/shared/ui/Link';
 import { TextField } from '@/shared/ui/TextField';
 
-type SignInData = {
-  email: string;
-  password: string;
-};
+import { createAuthDto } from '../lib';
+import { SignInDto } from '../types';
 
 type SignInProps = {
   'aria-labelledby': string;
-  onSubmit: (data: SignInData) => void;
+  onSubmit: (data: SignInDto) => void;
 };
 
 export const Form: FC<SignInProps> = ({
@@ -25,11 +23,7 @@ export const Form: FC<SignInProps> = ({
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const data: SignInData = {
-      email: formData.get('email') as string,
-      password: formData.get('password') as string,
-    };
-    onSubmit(data);
+    onSubmit(createAuthDto(formData));
   };
 
   return (

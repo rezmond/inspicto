@@ -17,7 +17,6 @@ export const Header: FC<HeaderProps> = ({ user }) => {
   const onLogon = () => {};
   const onLogin = () => {};
   const onLogout = () => {};
-  const { classes } = useStyles();
   return (
     <AppBar position="static">
       <Toolbar className={styles.toolbar}>

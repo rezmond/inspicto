@@ -14,12 +14,18 @@ module.exports = {
       patterns: [{
         group: ["@mui/*"],
         message: "Please use import from \"@/shared/ui/*\" instead"
-      }],
+      }, {
+        group: ["redux-saga/effects"],
+          message: "Please use import from \"@/shared/lib/reduxSaga*\" instead"
+        }],
     }]
   },
   "overrides": [
     {
-      files: ['src/fsd/shared/ui/*'],
+      files: [
+        'src/fsd/shared/ui/*',
+        'src/fsd/shared/lib/reduxSaga.ts'
+      ],
       rules: {
         "no-restricted-imports": "off"
       }

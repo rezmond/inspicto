@@ -14,6 +14,7 @@ export const LoggedIn: Story = {
   args: {
     user: {
       email: 'Test@mail.uk',
+      password: '123',
     },
   },
 };

@@ -2,6 +2,7 @@
 import type { FC, ReactNode } from 'react';
 import { Provider } from 'react-redux';
 
+// eslint-disable-next-line boundaries/element-types
 import { createStore } from '../store';
 import { CssVarsProvider } from './CssVarsProvider';
 import { theme } from './theme';

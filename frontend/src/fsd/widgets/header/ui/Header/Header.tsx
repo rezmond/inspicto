@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import { FC } from 'react';
 
 import { getUserName, type User } from '@/entities/user';
@@ -15,7 +16,6 @@ type HeaderProps = {
 
 export const Header: FC<HeaderProps> = ({ user }) => {
   const onLogon = () => {};
-  const onLogin = () => {};
   const onLogout = () => {};
   return (
     <AppBar position="static">
@@ -33,13 +33,14 @@ export const Header: FC<HeaderProps> = ({ user }) => {
           <>
             <Button
               className={styles.firstHeaderCta}
+              LinkComponent={Link}
               color="inherit"
-              onClick={onLogin}
+              href="/auth/sign-in"
             >
-              Login
+              Sing in
             </Button>{' '}
             <Button color="inherit" onClick={onLogon}>
-              Logon
+              Sign up
             </Button>
           </>
         )}

@@ -7,23 +7,23 @@ import { FormControlLabel } from '@/shared/ui/FormControlLabel';
 import { Grid } from '@/shared/ui/Grid';
 import { Link } from '@/shared/ui/Link';
 import { TextField } from '@/shared/ui/TextField';
-
-import { createAuthDto } from '../lib';
-import { SignInDto } from '../types';
+import { useSession } from '../../model';
 
 type SignInProps = {
   'aria-labelledby': string;
-  onSubmit: (data: SignInDto) => void;
 };
 
-export const Form: FC<SignInProps> = ({
+export const SignInForm: FC<SignInProps> = ({
   'aria-labelledby': ariaLabelledBy,
-  onSubmit,
 }) => {
+  const sessionService = useSession();
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    onSubmit(createAuthDto(formData));
+    sessionService.singIn({
+      email: formData.get('email') as string,
+      password: formData.get('password') as string,
+    });
   };
 
   return (

@@ -1,5 +1,6 @@
+import { sessionModel } from '@/features/session';
 import { all } from '@/shared/lib/reduxSaga';
 
 export function* rootSaga() {
-  yield all([]);
+  yield all([sessionModel.saga()]);
 }

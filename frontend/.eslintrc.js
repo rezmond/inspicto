@@ -24,6 +24,8 @@ module.exports = {
     {
       files: [
         'src/fsd/shared/ui/*',
+        'src/fsd/shared/lib/extendTheme.ts',
+        'src/fsd/app/providers/CssVarsProvider.tsx',
         'src/fsd/shared/lib/reduxSaga.ts'
       ],
       rules: {

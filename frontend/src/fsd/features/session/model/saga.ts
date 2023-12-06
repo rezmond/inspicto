@@ -3,6 +3,7 @@ import { PayloadAction } from '@reduxjs/toolkit';
 import { type User, userModel } from '@/entities/user';
 import {
   call,
+  apiCall,
   getContext,
   putEntity,
   takeLeading,
@@ -20,14 +21,21 @@ function* requestSignInSaga({
   payload: credentials,
 }: PayloadAction<Credentials>) {
   const api: { session: SessionApi } = yield getContext('api');
-  const { data, status, ...rest }: SignedInResponse =
-    yield api.session.signIn(credentials);
-  if (status === 401) {
-    // TODO: implement error handling
-    throw new Error(JSON.stringify(rest));
+
+  const response: SignedInResponse | undefined = yield* apiCall(
+    api.session.signIn(credentials),
+    userModel.signIn,
+  );
+
+  if (!response) {
+    return;
   }
 
-  yield call(signInSaga, data);
+  if (response.status === 401) {
+    yield putEntity.error(userModel.signIn, 'Unauthorized');
+  }
+
+  yield call(signInSaga, response.data);
 }
 
 export function* saga() {

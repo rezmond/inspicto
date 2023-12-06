@@ -12,6 +12,7 @@ export type EntityToLoad = {
 
 export type EntityLoadError = {
   status: 'error';
+  data?: undefined;
   error: string;
 };
 

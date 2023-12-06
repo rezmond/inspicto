@@ -5,8 +5,8 @@ import {
   call,
   apiCall,
   getContext,
-  putEntity,
   takeLeading,
+  put,
 } from '@/shared/lib/reduxSaga';
 
 import type { Credentials, SignedInResponse } from '../types';
@@ -14,7 +14,7 @@ import { requestSignIn } from './actions';
 import { SessionApi } from './interfaces';
 
 function* signInSaga(user: User) {
-  yield putEntity(userModel.signIn, user);
+  yield put(userModel.signIn(user));
 }
 
 function* requestSignInSaga({
@@ -32,7 +32,7 @@ function* requestSignInSaga({
   }
 
   if (response.status === 401) {
-    yield putEntity.error(userModel.signIn, 'Unauthorized');
+    yield put(userModel.signIn.error('Unauthorized'));
   }
 
   yield call(signInSaga, response.data);

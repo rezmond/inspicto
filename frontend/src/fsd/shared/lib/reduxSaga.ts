@@ -1,4 +1,3 @@
-import type { Action } from '@reduxjs/toolkit';
 import {
   type GetContextEffect,
   getContext as getContextBase,
@@ -7,7 +6,7 @@ import {
   call as callBase,
   takeLeading as takeLeadingBase,
 } from 'redux-saga/effects';
-import type { EntityToLoad, EntityToStore, StoredEntity } from '../model';
+import type { EntityActionCreator } from './redux';
 import { ContextScope, Logger } from './types';
 
 export const getContext = (prop: ContextScope): GetContextEffect =>
@@ -15,35 +14,13 @@ export const getContext = (prop: ContextScope): GetContextEffect =>
 
 export const all = allBase;
 export const put = putBase;
-export const putEntity = <
-  TData,
-  P extends EntityToStore<TData>,
-  TActionCreator extends (payload: P) => Action,
->(
-  actionCreator: TActionCreator,
-  data: TData,
-) => put(actionCreator({ status: 'fulfilled', data } as P));
-
-putEntity.isLoading = <
-  P extends EntityToLoad,
-  TActionCreator extends (payload: P) => never,
->(
-  actionCreator: TActionCreator,
-) => put(actionCreator({ status: 'pending' } as P));
-
-putEntity.error = <P extends StoredEntity<unknown>>(
-  actionCreator: (payload: P) => Action,
-  error: string,
-) => put(actionCreator({ status: 'error', error } as P));
-
 export const call = callBase;
 export const takeLeading = takeLeadingBase;
 
-export function* apiCall<
-  T,
-  P extends never,
-  TActionCreator extends (payload: StoredEntity<P>) => Action,
->(requestPromise: Promise<T>, actionCreator: TActionCreator) {
+export function* apiCall<T, P extends never>(
+  requestPromise: Promise<T>,
+  actionCreator: EntityActionCreator<P>,
+) {
   const logger: Logger = yield getContext('logger');
   let response: T;
   try {
@@ -54,7 +31,7 @@ export function* apiCall<
     }
 
     logger.error(error);
-    yield putEntity.error(actionCreator, error.message);
+    yield putBase(actionCreator.error(error.message));
     return;
   }
 

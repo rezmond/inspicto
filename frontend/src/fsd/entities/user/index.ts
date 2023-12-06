@@ -1,7 +1,9 @@
-import { slice } from './model';
+import { toEntityActions } from '@/shared/lib';
+import { User, slice } from './model';
 
 export const userModel = {
   ...slice.actions,
+  signIn: toEntityActions<User>(slice.actions.signIn),
   reducer: slice.reducer,
 };
 

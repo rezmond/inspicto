@@ -4,13 +4,16 @@ import createSagaMiddleware from 'redux-saga';
 import { sessionApi } from '@/features/session';
 import { userModel } from '@/entities/user';
 import { axiosClient } from '@/shared/lib/axios';
+import { localLogger } from '@/shared/lib/logger';
 import { ContextScope } from '@/shared/lib/types';
+
 import { rootSaga } from './rootSaga';
 
 const appContext = {
   api: {
     session: sessionApi.createMain(axiosClient),
   },
+  logger: localLogger,
 } satisfies Record<ContextScope, unknown>;
 
 const sagaMiddleware = createSagaMiddleware({

@@ -1,14 +1,19 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 
 import { type User, userModel } from '@/entities/user';
-import { call, getContext, put, takeLeading } from '@/shared/lib/reduxSaga';
+import {
+  call,
+  getContext,
+  putEntity,
+  takeLeading,
+} from '@/shared/lib/reduxSaga';
 
 import type { Credentials, SignedInResponse } from '../types';
 import { requestSignIn } from './actions';
 import { SessionApi } from './interfaces';
 
 function* signInSaga(user: User) {
-  yield put(userModel.signIn(user));
+  yield putEntity(userModel.signIn, user);
 }
 
 function* requestSignInSaga({

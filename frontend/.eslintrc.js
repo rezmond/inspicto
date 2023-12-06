@@ -31,6 +31,11 @@ module.exports = {
       rules: {
         "no-restricted-imports": "off"
       }
+    }, {
+      files: [ 'test/**/*' ],
+      rules: {
+        "boundaries/element-types": "off"
+      }
     }
   ]
 }

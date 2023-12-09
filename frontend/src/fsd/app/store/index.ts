@@ -1,1 +1,1 @@
-export { createStore } from './createStore';
+export { createStore, type AppContext } from './createStore';

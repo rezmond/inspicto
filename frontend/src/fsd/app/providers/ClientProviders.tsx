@@ -2,8 +2,12 @@
 import type { FC, ReactNode } from 'react';
 import { Provider } from 'react-redux';
 
+import { sessionApi } from '@/features/session';
+import { axiosClient } from '@/shared/lib/axios';
+import { localLogger } from '@/shared/lib/logger';
+
 // eslint-disable-next-line boundaries/element-types
-import { createStore } from '../store';
+import { type AppContext, createStore } from '../store';
 import { CssVarsProvider } from './CssVarsProvider';
 import { theme } from './theme';
 
@@ -11,7 +15,14 @@ type ClientProvidersProps = {
   children: ReactNode;
 };
 
-const store = createStore();
+const appContext = {
+  api: {
+    session: sessionApi.createMain(axiosClient),
+  },
+  logger: localLogger,
+} satisfies AppContext;
+
+const store = createStore(appContext);
 
 export const ClientProviders: FC<ClientProvidersProps> = ({ children }) => (
   <Provider store={store}>

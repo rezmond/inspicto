@@ -1,26 +1,28 @@
 import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 
-import { sessionApi } from '@/features/session';
+import { SessionApi } from '@/features/session';
 import { userModel } from '@/entities/user';
-import { axiosClient } from '@/shared/lib/axios';
-import { localLogger } from '@/shared/lib/logger';
-import { ContextScope } from '@/shared/lib/types';
+import type { ContextScope, Logger } from '@/shared/lib/types';
 
 import { rootSaga } from './rootSaga';
 
-const appContext = {
+type RawAppContext = {
   api: {
-    session: sessionApi.createMain(axiosClient),
-  },
-  logger: localLogger,
-} satisfies Record<ContextScope, unknown>;
+    session: SessionApi;
+  };
+  logger: Logger;
+};
 
-const sagaMiddleware = createSagaMiddleware({
-  context: appContext,
-});
+export type AppContext = keyof RawAppContext extends ContextScope
+  ? RawAppContext
+  : never;
 
-export const createStore = () => {
+export const createStore = (appContext: AppContext) => {
+  const sagaMiddleware = createSagaMiddleware({
+    context: appContext,
+  });
+
   const store = configureStore({
     devTools: {
       name: 'inspicto',

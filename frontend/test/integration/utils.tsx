@@ -7,8 +7,8 @@ import type { FC, ReactElement, ReactNode } from 'react';
 import { Provider } from 'react-redux';
 
 import { AppContext, createStore } from '@/app/store';
-import { SessionApi } from '@/features/session';
-import { Logger } from '@/shared/lib/types';
+import type { SessionApi } from '@/features/session';
+import type { Logger } from '@/shared/lib/types';
 
 type RenderResult = RenderResultBase & {
   appContext: AppContext;

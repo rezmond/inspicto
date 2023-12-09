@@ -1,4 +1,4 @@
-import { withMuiContexts } from './decorators/withMuiContexts';
+import { withMuiContexts, withStateContext } from './decorators';
 import type { Preview } from '@storybook/react';
 
 const preview: Preview = {
@@ -12,7 +12,8 @@ const preview: Preview = {
     },
   },
   decorators: [
-    withMuiContexts
+    withStateContext,
+    withMuiContexts,
   ]
 };
 

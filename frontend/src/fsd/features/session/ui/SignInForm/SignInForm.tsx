@@ -39,6 +39,7 @@ export const SignInForm: FC<SignInProps> = ({
         fullWidth
         id="email"
         label="Email Address"
+        type="email"
         name="email"
         autoComplete="email"
         autoFocus

@@ -7,7 +7,7 @@ export const useSession = (): SessionService => {
   const dispatch = useDispatch();
 
   return {
-    singIn: (credentials) => {
+    signIn: (credentials) => {
       dispatch(requestSignIn(credentials));
     },
   };

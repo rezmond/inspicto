@@ -20,7 +20,7 @@ export const SignInForm: FC<SignInProps> = ({
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    sessionService.singIn({
+    sessionService.signIn({
       email: formData.get('email') as string,
       password: formData.get('password') as string,
     });

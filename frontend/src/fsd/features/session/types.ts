@@ -9,5 +9,5 @@ export type Credentials = {
 export type SignedInResponse = AxiosResponse<User>;
 
 export type SessionService = {
-  singIn: (credentials: Credentials) => void;
+  signIn: (credentials: Credentials) => void;
 };

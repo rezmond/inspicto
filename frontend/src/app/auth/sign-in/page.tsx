@@ -1,2 +1,2 @@
 'use client';
-export { Home as default } from '@/pages/signIn';
+export { SignInPage as default } from '@/pages/signIn';

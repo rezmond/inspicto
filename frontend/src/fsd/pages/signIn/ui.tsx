@@ -7,7 +7,7 @@ import { Typography } from '@/shared/ui/Typography';
 
 const signInHeaderId = 'sign-in-header-id';
 
-export const Home = () => (
+export const SignInPage = () => (
   <>
     <Header />
     <Container component="main" maxWidth="xs">

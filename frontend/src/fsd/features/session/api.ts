@@ -1,4 +1,4 @@
-import type { AxiosStatic } from 'axios';
+import type { AxiosInstance } from 'axios';
 
 import { SessionApi } from './model';
 import type {
@@ -8,9 +8,9 @@ import type {
   SignedUpResponse,
 } from './types';
 
-export const createMain = (client: AxiosStatic): SessionApi => ({
+export const createMain = (client: AxiosInstance): SessionApi => ({
   signUp: (data: SignUpDetails): Promise<SignedUpResponse> =>
-    client.post('auth/sign-up', data),
+    client.post('v1/auth/sign-up', data),
   signIn: (data: Credentials): Promise<SignedInResponse> =>
-    client.post('auth/sign-in', data),
+    client.post('v1/auth/sign-in', data),
 });

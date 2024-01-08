@@ -19,6 +19,7 @@ export const render = (
   options?: RenderOptions,
 ): RenderResult => {
   const sessionApi: SessionApi = {
+    signUp: jest.fn(),
     signIn: jest.fn(),
   };
   const logger: Logger = {

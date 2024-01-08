@@ -15,7 +15,6 @@ type HeaderProps = {
 };
 
 export const Header: FC<HeaderProps> = ({ user }) => {
-  const onLogon = () => {};
   const onLogout = () => {};
   return (
     <AppBar position="static">
@@ -39,7 +38,7 @@ export const Header: FC<HeaderProps> = ({ user }) => {
             >
               Sing in
             </Button>{' '}
-            <Button color="inherit" onClick={onLogon}>
+            <Button LinkComponent={Link} color="inherit" href="/auth/sign-up">
               Sign up
             </Button>
           </>

@@ -9,8 +9,8 @@ import {
   put,
 } from '@/shared/lib/reduxSaga';
 
-import type { Credentials, SignedInResponse } from '../types';
-import { requestSignIn } from './actions';
+import type { Credentials, SignUpDetails, SignedInResponse } from '../types';
+import { requestSignIn, requestSignUp } from './actions';
 import type { SessionApi } from './interfaces';
 
 function* signInSaga(user: User) {
@@ -40,6 +40,26 @@ function* requestSignInSaga({
   yield call(signInSaga, response.data);
 }
 
+function* requestSignUpSaga({
+  payload: credentials,
+}: PayloadAction<SignUpDetails>) {
+  const api: { session: SessionApi } = yield getContext('api');
+
+  const response: SignedInResponse | undefined = yield* apiCall(
+    api.session.signUp(credentials),
+    userModel.signUp.error,
+  );
+
+  if (!response) {
+    return;
+  }
+
+  // TODO: show other errors
+
+  yield call(signInSaga, response.data);
+}
+
 export function* saga() {
+  yield takeLeading(requestSignUp.type, requestSignUpSaga);
   yield takeLeading(requestSignIn.type, requestSignInSaga);
 }

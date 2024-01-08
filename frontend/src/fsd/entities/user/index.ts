@@ -3,6 +3,7 @@ import { User, slice } from './model';
 
 export const userModel = {
   ...slice.actions,
+  signUp: toEntityActions<User>(slice.actions.signIn),
   signIn: toEntityActions<User>(slice.actions.signIn),
   reducer: slice.reducer,
 };

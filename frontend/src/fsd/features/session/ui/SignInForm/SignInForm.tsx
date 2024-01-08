@@ -68,7 +68,7 @@ export const SignInForm: FC<SignInProps> = ({
           </Link>
         </Grid>
         <Grid item>
-          <Link href="#" variant="body2">
+          <Link href="/auth/sign-up" variant="body2">
             {"Don't have an account? Sign Up"}
           </Link>
         </Grid>

@@ -4,6 +4,8 @@
   "description": "Pictures based source of inspiration",
   "main": "index.js",
   "scripts": {
+    "start:dev:backend": "npm run start:dev -w backend",
+    "start:dev": "npm-run-all --parallel start:dev:backend",
     "test": "echo \"Error: no test specified\" && exit 1",
     "ts:watch:backend": "npm run ts:watch -w backend",
     "ts:watch:frontend": "npm run ts:watch -w frontend",

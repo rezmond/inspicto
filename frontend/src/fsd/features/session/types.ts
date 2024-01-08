@@ -1,6 +1,6 @@
 import type { AxiosResponse } from 'axios';
 import type { CreateUserDto } from 'inspicto-backend';
-import { User } from '@/entities/user';
+import type { User } from '@/entities/user';
 
 export type Credentials = {
   email: string;

@@ -1,3 +1,4 @@
+import type { Action } from '@reduxjs/toolkit';
 import {
   type GetContextEffect,
   getContext as getContextBase,
@@ -6,7 +7,6 @@ import {
   call as callBase,
   takeLeading as takeLeadingBase,
 } from 'redux-saga/effects';
-import type { EntityActionCreator } from './redux';
 import { ContextScope, Logger } from './types';
 
 export const getContext = (prop: ContextScope): GetContextEffect =>
@@ -17,9 +17,9 @@ export const put = putBase;
 export const call = callBase;
 export const takeLeading = takeLeadingBase;
 
-export function* apiCall<T, P extends never>(
+export function* apiCall<T>(
   requestPromise: Promise<T>,
-  actionCreator: EntityActionCreator<P>,
+  errorActionCreator: (message: string) => Action,
 ) {
   const logger: Logger = yield getContext('logger');
   let response: T;
@@ -31,7 +31,7 @@ export function* apiCall<T, P extends never>(
     }
 
     logger.error(error);
-    yield putBase(actionCreator.error(error.message));
+    yield putBase(errorActionCreator(error.message));
     return;
   }
 

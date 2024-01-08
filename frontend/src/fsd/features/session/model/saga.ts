@@ -24,7 +24,7 @@ function* requestSignInSaga({
 
   const response: SignedInResponse | undefined = yield* apiCall(
     api.session.signIn(credentials),
-    userModel.signIn,
+    userModel.signIn.error,
   );
 
   if (!response) {

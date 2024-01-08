@@ -11,7 +11,7 @@ import {
 
 import type { Credentials, SignedInResponse } from '../types';
 import { requestSignIn } from './actions';
-import { SessionApi } from './interfaces';
+import type { SessionApi } from './interfaces';
 
 function* signInSaga(user: User) {
   yield put(userModel.signIn(user));
@@ -34,6 +34,8 @@ function* requestSignInSaga({
   if (response.status === 401) {
     yield put(userModel.signIn.error('Unauthorized'));
   }
+
+  // TODO: show other errors
 
   yield call(signInSaga, response.data);
 }

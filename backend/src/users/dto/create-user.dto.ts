@@ -1,3 +1,6 @@
 import { Prisma } from '@prisma/client';
 
-export type CreateUserDto = Prisma.UserCreateInput;
+export type CreateUserDto = Pick<
+  Prisma.UserCreateInput,
+  'email' | 'firstName' | 'lastName' | 'login' | 'password'
+>;

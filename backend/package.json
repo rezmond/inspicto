@@ -5,6 +5,7 @@
   "author": "Danil Makarov",
   "private": true,
   "license": "UNLICENSED",
+  "main": "index.ts",
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",

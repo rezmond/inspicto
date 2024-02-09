@@ -2,7 +2,10 @@ import axios from 'axios';
 
 export const axiosClient = axios.create({
   ...axios.defaults,
-  baseURL: process.env.NEXT_PUBLIC_API_HOST,
+  baseURL: '/api/',
 });
 
-export const axiosServer = axios;
+export const axiosServer = axios.create({
+  ...axios.defaults,
+  baseURL: process.env.NEXT_PUBLIC_API_HOST,
+});

@@ -1,5 +1,6 @@
 import type { Action } from '@reduxjs/toolkit';
 
+import { type TypedUseSelectorHook, useSelector } from 'react-redux';
 import { StoredEntity } from '../model';
 
 export interface EntityActionCreator<TEntity> {
@@ -37,3 +38,5 @@ export const toEntityActions = <
     } as TPayload);
   return newCreator;
 };
+
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

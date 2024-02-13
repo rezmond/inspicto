@@ -1,8 +1,9 @@
-import type { FC, FormEventHandler } from 'react';
+import { type FC, type FormEventHandler } from 'react';
 
 import { Box } from '@/shared/ui/Box';
 import { Button } from '@/shared/ui/Button';
 import { Checkbox } from '@/shared/ui/Checkbox';
+import { CircularProgress } from '@/shared/ui/CircularProgress';
 import { FormControlLabel } from '@/shared/ui/FormControlLabel';
 import { Grid } from '@/shared/ui/Grid';
 import { Link } from '@/shared/ui/Link';
@@ -17,6 +18,7 @@ export const SignUpForm: FC<SignUpFormProps> = ({
   'aria-labelledby': ariaLabelledBy,
 }) => {
   const sessionService = useSession();
+
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -87,7 +89,7 @@ export const SignUpForm: FC<SignUpFormProps> = ({
         </Grid>
       </Grid>
       <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-        Sign Up
+        {sessionService.isUserLoading ? <CircularProgress /> : 'Sign Up'}
       </Button>
       <Grid container justifyContent="flex-end">
         <Grid item>

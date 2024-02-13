@@ -1,5 +1,5 @@
 import { toEntityActions } from '@/shared/lib';
-import { User, slice } from './model';
+import { type User, slice } from './model';
 
 export const userModel = {
   ...slice.actions,

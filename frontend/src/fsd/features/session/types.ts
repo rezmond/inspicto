@@ -15,4 +15,5 @@ export type SignedUpResponse = AxiosResponse<User>;
 export type SessionService = {
   signUp: (credentials: SignUpDetails) => void;
   signIn: (credentials: Credentials) => void;
+  isUserLoading: boolean;
 };

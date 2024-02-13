@@ -45,6 +45,8 @@ function* requestSignUpSaga({
 }: PayloadAction<SignUpDetails>) {
   const api: { session: SessionApi } = yield getContext('api');
 
+  yield put(userModel.signUp.isLoading());
+
   const response: SignedInResponse | undefined = yield* apiCall(
     api.session.signUp(credentials),
     userModel.signUp.error,

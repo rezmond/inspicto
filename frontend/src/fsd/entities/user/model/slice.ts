@@ -6,7 +6,7 @@ import type { User } from './types';
 
 export const slice = createSlice({
   name: 'user',
-  initialState: {},
+  initialState: {} as StoredEntity<User>,
   reducers: {
     signIn: (state, action: PayloadAction<StoredEntity<User>>) => {
       Object.assign(

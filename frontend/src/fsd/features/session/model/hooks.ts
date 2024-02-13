@@ -9,6 +9,7 @@ import type { SessionService } from '../types';
 import { requestSignUp, requestSignIn } from './actions';
 
 export const useSession = (): SessionService => {
+  // TODO: convert to useAppDispatch
   const dispatch = useDispatch();
   const router = useRouter();
   const userEntity = useAppSelector(getUserEntity);

@@ -21,6 +21,7 @@ export const SignUpForm: FC<SignUpFormProps> = ({
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
+    // TODO: add validation through some library?
     const formData = new FormData(e.currentTarget);
     sessionService.signUp({
       email: formData.get('email') as string,

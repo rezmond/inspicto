@@ -3,20 +3,16 @@ import createSagaMiddleware from 'redux-saga';
 
 import { SessionApi } from '@/features/session';
 import { userModel } from '@/entities/user';
-import type { ContextScope, Logger } from '@/shared/lib/types';
+import type { Logger } from '@/shared/lib/types';
 
 import { rootSaga } from './rootSaga';
 
-type RawAppContext = {
+export type AppContext = {
   api: {
     session: SessionApi;
   };
   logger: Logger;
 };
-
-export type AppContext = keyof RawAppContext extends ContextScope
-  ? RawAppContext
-  : never;
 
 export const createStore = (appContext: AppContext) => {
   const sagaMiddleware = createSagaMiddleware({

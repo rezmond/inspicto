@@ -7,7 +7,7 @@ import {
   call as callBase,
   takeLeading as takeLeadingBase,
 } from 'redux-saga/effects';
-import { ContextScope, Logger } from './types';
+import type { Logger } from './types';
 
 export const getContext = (prop: ContextScope): GetContextEffect =>
   getContextBase(prop);

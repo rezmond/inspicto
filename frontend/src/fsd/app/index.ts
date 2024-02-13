@@ -1,3 +1,4 @@
+import type { RootState as RootStateBase } from './providers';
 import type { AppContext } from './store';
 
 export {
@@ -10,4 +11,6 @@ export { createStore, type AppContext } from './store';
 /* The global declaration is needed here to overcome the circular import restriction of FSD. The type "AppContext" is made based on lower level layers. Such the way the "ContextScope" can't be available on the "shared" layer, but in global declaration it can. */
 declare global {
   export type ContextScope = keyof AppContext;
+
+  export type RootState = RootStateBase;
 }

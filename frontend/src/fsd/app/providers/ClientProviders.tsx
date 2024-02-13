@@ -24,6 +24,8 @@ const appContext = {
 
 const store = createStore(appContext);
 
+export type RootState = ReturnType<typeof store.getState>;
+
 export const ClientProviders: FC<ClientProvidersProps> = ({ children }) => (
   <Provider store={store}>
     <CssVarsProvider theme={theme}>{children}</CssVarsProvider>

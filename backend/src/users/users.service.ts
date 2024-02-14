@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { User as UserModel } from '@prisma/client';
+import * as bcrypt from 'bcrypt';
 
 import { ApiError } from 'src/errors';
 
@@ -25,8 +26,13 @@ export class UsersService {
       );
     }
 
+    const salt = await bcrypt.genSalt();
+    const passwordHash = await bcrypt.hash(user.password, salt);
     return this.prisma.user.create({
-      data: user,
+      data: {
+        ...user,
+        password: passwordHash,
+      },
     });
   }
 

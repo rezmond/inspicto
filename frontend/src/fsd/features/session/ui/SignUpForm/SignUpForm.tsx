@@ -68,6 +68,7 @@ export const SignUpForm: FC<SignUpFormProps> = ({
             id="email"
             label="Email Address"
             name="email"
+            type="email"
             autoComplete="email"
           />
         </Grid>

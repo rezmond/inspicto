@@ -1,6 +1,18 @@
-import { Prisma } from '@prisma/client';
+import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 
-export type CreateUserDto = Pick<
-  Prisma.UserCreateInput,
-  'email' | 'firstName' | 'lastName' | 'login' | 'password'
->;
+export class CreateUserDto {
+  @IsEmail()
+  email: string;
+
+  @IsString()
+  firstName: string;
+
+  @IsString()
+  lastName: string;
+
+  @IsString()
+  login: string;
+
+  @IsNotEmpty()
+  password: string;
+}

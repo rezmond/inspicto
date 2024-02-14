@@ -25,6 +25,7 @@ export const SignUpForm: FC<SignUpFormProps> = ({
     const formData = new FormData(e.currentTarget);
     sessionService.signUp({
       email: formData.get('email') as string,
+      login: formData.get('login') as string,
       password: formData.get('password') as string,
       firstName: formData.get('firstName') as string,
       lastName: formData.get('lastName') as string,

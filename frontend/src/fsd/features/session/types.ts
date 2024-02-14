@@ -1,5 +1,4 @@
 import type { AxiosResponse } from 'axios';
-import type { CreateUserDto } from 'inspicto-backend';
 import type { User } from '@/entities/user';
 
 export type Credentials = {
@@ -7,7 +6,13 @@ export type Credentials = {
   password: string;
 };
 
-export type SignUpDetails = CreateUserDto;
+export interface SignUpDetails {
+  email: string;
+  firstName: string;
+  lastName: string;
+  login: string;
+  password: string;
+}
 
 export type SignedInResponse = AxiosResponse<User>;
 export type SignedUpResponse = AxiosResponse<User>;

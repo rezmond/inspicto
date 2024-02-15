@@ -1,3 +1,5 @@
+import { HttpStatus } from '@nestjs/common';
+
 type Error = Record<string, unknown>;
 
 export class ApiError {
@@ -8,6 +10,6 @@ export class ApiError {
   ) {}
 
   static BadRequest(message: string, errors: Error[] = []) {
-    return new ApiError(400, message, errors);
+    return new ApiError(HttpStatus.BAD_REQUEST, message, errors);
   }
 }

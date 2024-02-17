@@ -1,8 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { User as UserModel } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
-
-import { ApiError } from 'src/errors';
 
 import { PrismaService } from '../prisma.service';
 
@@ -20,10 +18,8 @@ export class UsersService {
       },
     });
     if (storedUser) {
-      // TODO: it is an error. Not an exception. How could be implemented instead of throwing it?
-      throw ApiError.BadRequest(
-        'This email has already been registered. Try another one.',
-      );
+      // TODO: it is an error. Not an exception. How could it be implemented instead of throwing it?
+      throw new ConflictException('This email has already been registered.');
     }
 
     const salt = await bcrypt.genSalt();

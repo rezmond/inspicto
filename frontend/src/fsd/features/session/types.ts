@@ -9,7 +9,6 @@ export interface Credentials {
 export interface SignUpDetails extends Credentials {
   firstName: string;
   lastName: string;
-  login: string;
 }
 
 export interface SignedInResponse extends AxiosResponse<User> {}

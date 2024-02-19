@@ -11,13 +11,13 @@ import {
 import { UsersService } from './users.service';
 import { CreateUserDto, UpdateUserDto } from './dto';
 
-@Controller('auth')
+@Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Post('sign-up')
+  @Post()
   create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
+    return 'crate user';
   }
 
   @Get()

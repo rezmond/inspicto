@@ -3,10 +3,12 @@ import {
   Get,
   Post,
   Body,
+  Session,
   Patch,
   Param,
   Delete,
 } from '@nestjs/common';
+import { Session as ExpressSession } from 'express-session';
 
 import { AuthService } from './auth.service';
 import { CreateAuthDto } from './dto/create-auth.dto';
@@ -17,8 +19,13 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('sign-up')
-  create(@Body() createAuthDto: CreateAuthDto) {
-    return this.authService.create(createAuthDto);
+  async create(
+    @Body() createAuthDto: CreateAuthDto,
+    @Session() session: ExpressSession,
+  ) {
+    const user = await this.authService.create(createAuthDto);
+    await this.authService.storeSession(session.id, user.id);
+    return user;
   }
 
   @Get()

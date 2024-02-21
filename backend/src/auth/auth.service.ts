@@ -14,6 +14,10 @@ export class AuthService {
     return user;
   }
 
+  async storeSession(sessionId: string, userId: string) {
+    console.log(`Save sessionID "${sessionId}" for user with id "${userId}"`);
+  }
+
   findAll() {
     return `This action returns all auth`;
   }

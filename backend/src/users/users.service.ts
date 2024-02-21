@@ -1,21 +1,17 @@
 import { ConflictException, Injectable } from '@nestjs/common';
-import { User as UserModel } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 
 import { PrismaService } from '../prisma.service';
 
 import { CreateUserDto, UpdateUserDto } from './dto';
+import { UserModel } from './users.types';
 
 @Injectable()
 export class UsersService {
   constructor(private prisma: PrismaService) {}
 
   async create(user: CreateUserDto): Promise<UserModel> {
-    const storedUser = await this.prisma.user.findFirst({
-      where: {
-        email: user.email,
-      },
-    });
+    const storedUser = await this.findByEmail(user.email);
     if (storedUser) {
       // TODO: it is an error. Not an exception. How could it be implemented instead of throwing it?
       throw new ConflictException('This email has already been registered.');
@@ -27,6 +23,14 @@ export class UsersService {
       data: {
         ...user,
         password: passwordHash,
+      },
+    });
+  }
+
+  findByEmail(email: string): Promise<UserModel | null> {
+    return this.prisma.user.findUnique({
+      where: {
+        email: email,
       },
     });
   }

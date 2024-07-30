@@ -1,4 +1,7 @@
-import type { RootState as RootStateBase } from './providers';
+import type {
+  RootState as RootStateBase,
+  AppDispatch as AppDispatchBase,
+} from './providers';
 import type { AppContext } from './store';
 
 export {
@@ -13,4 +16,5 @@ declare global {
   export type ContextScope = keyof AppContext;
 
   export type RootState = RootStateBase;
+  export type AppDispatch = AppDispatchBase;
 }

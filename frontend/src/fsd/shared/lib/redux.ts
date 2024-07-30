@@ -1,6 +1,6 @@
 import type { Action } from '@reduxjs/toolkit';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { type TypedUseSelectorHook, useSelector } from 'react-redux';
 import { StoredEntity } from '../model';
 
 export interface EntityActionCreator<TEntity> {
@@ -39,4 +39,6 @@ export const toEntityActions = <
   return newCreator;
 };
 
-export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+export const useAppSelector = useSelector.withTypes<RootState>();
+
+export const useAppDispatch = useDispatch.withTypes<AppDispatch>();

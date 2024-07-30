@@ -25,6 +25,7 @@ const appContext = {
 const store = createStore(appContext);
 
 export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 
 export const ClientProviders: FC<ClientProvidersProps> = ({ children }) => (
   <Provider store={store}>

@@ -1,16 +1,14 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useAppSelector } from '@/shared/lib';
+import { useAppDispatch, useAppSelector } from '@/shared/lib';
 import { getUserEntity } from '@/shared/model';
 
 import type { SessionService } from '../types';
 import { requestSignUp, requestSignIn } from './actions';
 
 export const useSession = (): SessionService => {
-  // TODO: convert to useAppDispatch
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const router = useRouter();
   const userEntity = useAppSelector(getUserEntity);
   const isUserLoaded = userEntity.status === 'fulfilled';

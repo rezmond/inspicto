@@ -1,12 +1,13 @@
 import React from 'react';
 import type { Decorator } from '@storybook/react';
-import { action } from '@storybook/addon-actions'
+import { action } from '@storybook/addon-actions';
 import { Provider } from 'react-redux';
 
 import { createStore, type AppContext } from '../../src/fsd/app';
 import { SessionApi } from '../../src/fsd/features/session';
 import type { Logger } from '../../src/fsd/shared/lib/types';
 
+// TODO: fix the TS error
 const sessionApi: SessionApi = {
   signIn: async (credentials) => {
     action('Sign in API call with')(credentials);

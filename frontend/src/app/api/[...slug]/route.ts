@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import { axiosServer } from '@/shared/lib/axios';
+import { axiosServer } from '@/shared/api/axios';
 
 export const POST = async (request: Request) => {
   const url = new URL(request.url);

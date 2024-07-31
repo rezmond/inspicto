@@ -3,7 +3,7 @@ import type { FC, ReactNode } from 'react';
 import { Provider } from 'react-redux';
 
 import { sessionApi } from '@/features/session';
-import { axiosClient } from '@/shared/lib/axios';
+import { axiosClient } from '@/shared/api/axios';
 import { localLogger } from '@/shared/lib/logger';
 
 // eslint-disable-next-line boundaries/element-types

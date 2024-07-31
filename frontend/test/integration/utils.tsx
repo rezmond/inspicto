@@ -9,9 +9,22 @@ import { Provider } from 'react-redux';
 import { AppContext, createStore } from '@/app/store';
 import type { SessionApi } from '@/features/session';
 import type { Logger } from '@/shared/lib/logger';
+import {
+  AppRouterContext,
+  type AppRouterInstance,
+} from 'next/dist/shared/lib/app-router-context.shared-runtime';
 
 type RenderResult = RenderResultBase & {
   appContext: AppContext;
+};
+
+const appRouterInstanceMock: AppRouterInstance = {
+  back: jest.fn(),
+  forward: jest.fn(),
+  refresh: jest.fn(),
+  push: jest.fn(),
+  replace: jest.fn(),
+  prefetch: jest.fn(),
 };
 
 export const render = (
@@ -34,7 +47,9 @@ export const render = (
   const store = createStore(appContext);
 
   const AllTheProviders: FC<{ children: ReactNode }> = ({ children }) => (
-    <Provider store={store}>{children}</Provider>
+    <AppRouterContext.Provider value={appRouterInstanceMock}>
+      <Provider store={store}>{children}</Provider>
+    </AppRouterContext.Provider>
   );
 
   return {

@@ -1,5 +1,4 @@
 import type { Action } from '@reduxjs/toolkit';
-import { useDispatch, useSelector } from 'react-redux';
 
 import { StoredEntity } from '../model';
 
@@ -38,7 +37,3 @@ export const toEntityActions = <
     } as TPayload);
   return newCreator;
 };
-
-export const useAppSelector = useSelector.withTypes<RootState>();
-
-export const useAppDispatch = useDispatch.withTypes<AppDispatch>();

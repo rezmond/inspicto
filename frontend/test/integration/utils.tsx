@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 
 import { AppContext, createStore } from '@/app/store';
 import type { SessionApi } from '@/features/session';
-import type { Logger } from '@/shared/lib/types';
+import type { Logger } from '@/shared/lib/logger';
 
 type RenderResult = RenderResultBase & {
   appContext: AppContext;

@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 
 import { createStore, type AppContext } from '../../src/fsd/app';
 import { SessionApi } from '../../src/fsd/features/session';
-import type { Logger } from '../../src/fsd/shared/lib/types';
+import type { Logger } from '../../src/fsd/shared/lib/logger';
 
 // TODO: fix the TS error
 const sessionApi: SessionApi = {

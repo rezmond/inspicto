@@ -25,6 +25,7 @@ export class AuthController {
   ) {
     const user = await this.authService.create(createAuthDto);
     await this.authService.storeSession(session.id, user.id);
+    // TODO: Remove password from response
     return user;
   }
 

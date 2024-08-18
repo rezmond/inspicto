@@ -1,6 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+import * as bcrypt from 'bcrypt';
 
-import { UsersService } from 'src/users/users.service';
+import { type UserModel, UsersService } from '../users';
 
 import { CreateAuthDto } from './dto/create-auth.dto';
 import { UpdateAuthDto } from './dto/update-auth.dto';
@@ -16,6 +17,16 @@ export class AuthService {
 
   async storeSession(sessionId: string, userId: string) {
     console.log(`Save sessionID "${sessionId}" for user with id "${userId}"`);
+  }
+
+  async validateUser(email: string, password: string): Promise<UserModel> {
+    const user = await this.usersService.findByEmail(email);
+
+    if (!user || bcrypt.compareSync(password, user?.password)) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
+
+    return user;
   }
 
   findAll() {
